@@ -9,8 +9,10 @@ container.style.height=('500px')
 container.style.flexDirection=('row')
 container.style.alignContent=('flex-start')
 container.style.alignItems=('stretch')
-let x=64
+let x=16
 body.appendChild(container)
+
+
 createDivChildren(x)
 
 

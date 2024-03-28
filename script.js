@@ -9,17 +9,40 @@ container.style.height=('500px')
 container.style.flexDirection=('row')
 container.style.alignContent=('flex-start')
 container.style.alignItems=('stretch')
-let x=16
+
 body.appendChild(container)
 
 
-createDivChildren(x)
+var range = document.getElementById('range');
+var bubble = document.getElementById('bubble');
 
+range.addEventListener("input", () => {
+  setBubble(range, bubble);
+});
+
+
+
+setBubble(range, bubble);
+function setBubble(range, bubble) {
+    const val = range.value;
+    const min = range.min ? range.min : 0;
+    const max = range.max ? range.max : 100;
+    const newVal = Number(((val - min) * 100) / (max - min));
+    bubble.innerHTML = val;
+    bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+    let grid=document.getElementsByClassName('grid')
+    while(grid[0]){
+        grid[0].parentNode.removeChild(grid[0])
+    }
+    
+    
+    createDivChildren(val)
+}
 
 
 //create container div children
 function createDivChildren(divNum = 16) {
-    let y=500/x
+    let y=500/divNum
     y=y+'px'
     for (let index = 0; index < divNum*divNum; index++) {
         const divChild=document.createElement('div')
